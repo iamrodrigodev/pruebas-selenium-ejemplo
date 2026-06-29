@@ -1,7 +1,20 @@
 import { Builder, By, WebDriver, until } from "selenium-webdriver";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
+import * as fs from "fs";
+import * as path from "path";
 
 const esperar = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const carpetaScreenshots = path.resolve("screenshots");
+if (!fs.existsSync(carpetaScreenshots)) {
+  fs.mkdirSync(carpetaScreenshots, { recursive: true });
+}
+
+async function capturar(controlador: WebDriver, nombre: string) {
+  const imagen = await controlador.takeScreenshot();
+  const rutaArchivo = path.join(carpetaScreenshots, `${nombre}.png`);
+  fs.writeFileSync(rutaArchivo, imagen, "base64");
+}
 
 describe("Using Selenium - Ejemplo oficial", () => {
   let controlador: WebDriver;
@@ -14,6 +27,7 @@ describe("Using Selenium - Ejemplo oficial", () => {
   it("ocho componentes", async () => {
     await controlador.get("https://www.selenium.dev/selenium/web/web-form.html");
     await esperar(1500);
+    await capturar(controlador, "01-pagina-cargada");
 
     const titulo = await controlador.getTitle();
     expect(titulo).toBe("Web form");
@@ -28,6 +42,7 @@ describe("Using Selenium - Ejemplo oficial", () => {
       await esperar(120);
     }
     await esperar(800);
+    await capturar(controlador, "02-texto-ingresado");
 
     const botonEnviar = await controlador.findElement(By.css("button"));
     await botonEnviar.click();
@@ -36,6 +51,7 @@ describe("Using Selenium - Ejemplo oficial", () => {
     await controlador.wait(until.elementLocated(By.id("message")), 5000);
     const mensaje = await controlador.findElement(By.id("message"));
     await esperar(1200);
+    await capturar(controlador, "03-mensaje-recibido");
 
     const valor = await mensaje.getText();
     expect(valor).toBe("Received!");
