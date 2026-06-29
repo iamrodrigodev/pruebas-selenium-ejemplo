@@ -21,9 +21,9 @@
   },
   "homepage": "https://github.com/iamrodrigodev/pruebas-selenium-ejemplo#readme",
   "devDependencies": {
-    "@types/selenium-webdriver": "^4.35.6",
-    "selenium-webdriver": "^4.45.0",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.9"
+    "@types/selenium-webdriver": "4.35.6",
+    "selenium-webdriver": "4.45.0",
+    "typescript": "6.0.3",
+    "vitest": "4.1.9"
   }
 }
