@@ -2,38 +2,38 @@ import { Builder, By, WebDriver } from "selenium-webdriver";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
 
 describe("Checkbox y Radio Button", () => {
-  let driver: WebDriver;
+  let controlador: WebDriver;
 
   beforeAll(async () => {
-    driver = await new Builder().forBrowser("chrome").build();
-    await driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+    controlador = await new Builder().forBrowser("chrome").build();
+    await controlador.get("https://www.selenium.dev/selenium/web/web-form.html");
   }, 15000);
 
   it("checked checkbox debe estar marcado por defecto", async () => {
-    const checkedBox = await driver.findElement(By.id("my-check-1"));
-    expect(await checkedBox.isSelected()).toBe(true);
+    const casillaMarcada = await controlador.findElement(By.id("my-check-1"));
+    expect(await casillaMarcada.isSelected()).toBe(true);
   }, 10000);
 
   it("default checkbox debe poder marcarse", async () => {
-    const defaultBox = await driver.findElement(By.id("my-check-2"));
-    expect(await defaultBox.isSelected()).toBe(false);
-    await defaultBox.click();
-    expect(await defaultBox.isSelected()).toBe(true);
+    const casillaPorDefecto = await controlador.findElement(By.id("my-check-2"));
+    expect(await casillaPorDefecto.isSelected()).toBe(false);
+    await casillaPorDefecto.click();
+    expect(await casillaPorDefecto.isSelected()).toBe(true);
   }, 10000);
 
   it("checked radio debe estar seleccionado por defecto", async () => {
-    const checkedRadio = await driver.findElement(By.id("my-radio-1"));
-    expect(await checkedRadio.isSelected()).toBe(true);
+    const radioMarcado = await controlador.findElement(By.id("my-radio-1"));
+    expect(await radioMarcado.isSelected()).toBe(true);
   }, 10000);
 
   it("default radio debe poder seleccionarse", async () => {
-    const defaultRadio = await driver.findElement(By.id("my-radio-2"));
-    expect(await defaultRadio.isSelected()).toBe(false);
-    await defaultRadio.click();
-    expect(await defaultRadio.isSelected()).toBe(true);
+    const radioPorDefecto = await controlador.findElement(By.id("my-radio-2"));
+    expect(await radioPorDefecto.isSelected()).toBe(false);
+    await radioPorDefecto.click();
+    expect(await radioPorDefecto.isSelected()).toBe(true);
   }, 10000);
 
   afterAll(async () => {
-    await driver.quit();
+    await controlador.quit();
   });
 });

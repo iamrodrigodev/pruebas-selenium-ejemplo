@@ -2,31 +2,31 @@ import { Builder, By, WebDriver, until } from "selenium-webdriver";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
 
 describe("Using Selenium - Ejemplo oficial", () => {
-  let driver: WebDriver;
+  let controlador: WebDriver;
 
   beforeAll(async () => {
-    driver = await new Builder().forBrowser("chrome").build();
+    controlador = await new Builder().forBrowser("chrome").build();
   }, 15000);
 
-  it("eight components", async () => {
-    await driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+  it("ocho componentes", async () => {
+    await controlador.get("https://www.selenium.dev/selenium/web/web-form.html");
 
-    const title = await driver.getTitle();
-    expect(title).toBe("Web form");
+    const titulo = await controlador.getTitle();
+    expect(titulo).toBe("Web form");
 
-    const textBox = await driver.findElement(By.name("my-text"));
-    const submitButton = await driver.findElement(By.css("button"));
+    const campoTexto = await controlador.findElement(By.name("my-text"));
+    const botonEnviar = await controlador.findElement(By.css("button"));
 
-    await textBox.sendKeys("Selenium");
-    await submitButton.click();
+    await campoTexto.sendKeys("Selenium");
+    await botonEnviar.click();
 
-    await driver.wait(until.elementLocated(By.id("message")), 5000);
-    const message = await driver.findElement(By.id("message"));
-    const value = await message.getText();
-    expect(value).toBe("Received!");
+    await controlador.wait(until.elementLocated(By.id("message")), 5000);
+    const mensaje = await controlador.findElement(By.id("message"));
+    const valor = await mensaje.getText();
+    expect(valor).toBe("Received!");
   }, 15000);
 
   afterAll(async () => {
-    await driver.quit();
+    await controlador.quit();
   });
 });
