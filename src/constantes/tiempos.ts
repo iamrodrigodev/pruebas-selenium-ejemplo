@@ -8,3 +8,9 @@ export const TIEMPOS = {
   SCROLL: 600,
   RESULTADO: 1500,
 } as const;
+
+export const TIMEOUTS = {
+  CONFIGURACION: 20000,
+  TEST: 15000,
+  TEST_LARGO: 30000,
+} as const;
