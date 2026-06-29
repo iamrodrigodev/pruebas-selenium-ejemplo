@@ -1,4 +1,4 @@
-import { Builder, By, WebDriver } from "selenium-webdriver";
+import { Builder, By, WebDriver, WebElement } from "selenium-webdriver";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
@@ -16,6 +16,14 @@ async function capturar(controlador: WebDriver, nombre: string) {
   fs.writeFileSync(rutaArchivo, imagen, "base64");
 }
 
+async function scrollAlElemento(controlador: WebDriver, elemento: WebElement) {
+  await controlador.executeScript(
+    "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });",
+    elemento
+  );
+  await esperar(600);
+}
+
 describe("Checkbox y Radio Button", () => {
   let controlador: WebDriver;
 
@@ -30,7 +38,7 @@ describe("Checkbox y Radio Button", () => {
 
   it("checked checkbox debe estar marcado por defecto", async () => {
     const casillaMarcada = await controlador.findElement(By.id("my-check-1"));
-    await esperar(800);
+    await scrollAlElemento(controlador, casillaMarcada);
     expect(await casillaMarcada.isSelected()).toBe(true);
     await capturar(controlador, "05-checkbox-1-marcado-por-defecto");
     await esperar(600);
@@ -38,7 +46,7 @@ describe("Checkbox y Radio Button", () => {
 
   it("default checkbox debe poder marcarse", async () => {
     const casillaPorDefecto = await controlador.findElement(By.id("my-check-2"));
-    await esperar(800);
+    await scrollAlElemento(controlador, casillaPorDefecto);
     expect(await casillaPorDefecto.isSelected()).toBe(false);
     await capturar(controlador, "06-checkbox-2-desmarcado");
     await esperar(600);
@@ -51,7 +59,7 @@ describe("Checkbox y Radio Button", () => {
 
   it("checked radio debe estar seleccionado por defecto", async () => {
     const radioMarcado = await controlador.findElement(By.id("my-radio-1"));
-    await esperar(800);
+    await scrollAlElemento(controlador, radioMarcado);
     expect(await radioMarcado.isSelected()).toBe(true);
     await capturar(controlador, "08-radio-1-seleccionado-por-defecto");
     await esperar(600);
@@ -59,7 +67,7 @@ describe("Checkbox y Radio Button", () => {
 
   it("default radio debe poder seleccionarse", async () => {
     const radioPorDefecto = await controlador.findElement(By.id("my-radio-2"));
-    await esperar(800);
+    await scrollAlElemento(controlador, radioPorDefecto);
     expect(await radioPorDefecto.isSelected()).toBe(false);
     await capturar(controlador, "09-radio-2-deseleccionado");
     await esperar(600);
