@@ -54,9 +54,43 @@
 
 ---
 
-## Parte 1 — Ejemplo oficial de Selenium
+## Comandos
 
-El test abre el formulario, verifica el título, escribe `"Selenium"` en el campo de texto, hace clic en **Submit** y verifica que el mensaje de respuesta sea `"Received!"`.
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Ejecutar todas las pruebas:
+
+```bash
+npm test
+```
+
+Ejecutar solo la Parte 1:
+
+```bash
+npm run test:usando-selenium
+```
+
+Ejecutar solo la Parte 2:
+
+```bash
+npm run test:checkbox-radio
+```
+
+---
+
+## Parte 1: Ejemplo oficial de Selenium
+
+Se implementó la prueba descrita en la documentación oficial de Selenium. El test realiza los siguientes pasos:
+
+- Abre el formulario en [web-form.html](https://www.selenium.dev/selenium/web/web-form.html)
+- Verifica que el título de la página sea `"Web form"`
+- Localiza el campo de texto por su atributo `name="my-text"` y escribe `"Selenium"` letra por letra
+- Hace clic en el botón **Submit**
+- Espera a que aparezca el elemento con `id="message"` y verifica que su texto sea `"Received!"`
 
 ### 1. Página cargada
 
@@ -78,9 +112,14 @@ Tras hacer clic en **Submit**, se verifica que el mensaje de respuesta sea `"Rec
 
 ---
 
-## Parte 2 — Checkbox y Radio Button
+## Parte 2: Checkbox y Radio Button
 
-El test abre el mismo formulario e interactúa con los cuatro elementos de selección: dos checkboxes y dos radio buttons.
+Se crearon cuatro pruebas que interactúan con los elementos de selección del formulario:
+
+- **Prueba 1:** Verifica que `"Checked checkbox"` (`my-check-1`) esté marcado por defecto al cargar la página.
+- **Prueba 2:** Verifica que `"Default checkbox"` (`my-check-2`) esté desmarcado, hace clic sobre él y confirma que quede marcado.
+- **Prueba 3:** Verifica que `"Checked radio"` (`my-radio-1`) esté seleccionado por defecto al cargar la página.
+- **Prueba 4:** Verifica que `"Default radio"` (`my-radio-2`) esté deseleccionado, hace clic sobre él y confirma que quede seleccionado.
 
 ### 4. Página cargada
 
