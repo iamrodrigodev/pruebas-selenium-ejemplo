@@ -1,0 +1,29 @@
+{
+  "name": "pruebas-selenium-ejemplo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:usando-selenium": "vitest run src/test/usingSelenium.test.ts",
+    "test:checkbox-radio": "vitest run src/test/checkboxRadio.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamrodrigodev/pruebas-selenium-ejemplo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/iamrodrigodev/pruebas-selenium-ejemplo/issues"
+  },
+  "homepage": "https://github.com/iamrodrigodev/pruebas-selenium-ejemplo#readme",
+  "devDependencies": {
+    "@types/selenium-webdriver": "^4.35.6",
+    "selenium-webdriver": "^4.45.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}
