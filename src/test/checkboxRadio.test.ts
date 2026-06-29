@@ -2,7 +2,7 @@ import { Builder, By, WebDriver, WebElement } from "selenium-webdriver";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
-import { TIEMPOS } from "../constantes/tiempos";
+import { TIEMPOS } from "@/constantes/tiempos";
 
 const esperar = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
