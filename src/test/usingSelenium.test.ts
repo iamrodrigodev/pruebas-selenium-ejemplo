@@ -2,7 +2,7 @@ import { Builder, By, WebDriver, until } from "selenium-webdriver";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
-import { TIEMPOS } from "@/constantes/tiempos";
+import { TIEMPOS, TIMEOUTS } from "@/constantes/tiempos";
 
 const esperar = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -23,7 +23,7 @@ describe("Using Selenium - Ejemplo oficial", () => {
   beforeAll(async () => {
     controlador = await new Builder().forBrowser("chrome").build();
     await controlador.manage().window().maximize();
-  }, 15000);
+  }, TIMEOUTS.TEST);
 
   it("ocho componentes", async () => {
     await controlador.get("https://www.selenium.dev/selenium/web/web-form.html");
@@ -57,7 +57,7 @@ describe("Using Selenium - Ejemplo oficial", () => {
     const valor = await mensaje.getText();
     expect(valor).toBe("Received!");
     await esperar(TIEMPOS.RESULTADO);
-  }, 30000);
+  }, TIMEOUTS.TEST_LARGO);
 
   afterAll(async () => {
     await esperar(TIEMPOS.ESPERA_FINAL);
